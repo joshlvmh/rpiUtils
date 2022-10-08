@@ -31,7 +31,7 @@ GPIOExport(int pin)
   ssize_t bytes_written;
   int fd;
 
-  fd = open("/sys/class/gpio/export", 0_WRONLY);
+  fd = open("/sys/class/gpio/export", O_WRONLY);
   if (-1 == fd) {
     fprintf(stderr, "Failed to open export for writing.\n");
     return(-1);
@@ -50,7 +50,7 @@ GPIOUnexport(int pin)
   ssize_t bytes_written;
   int fd;
 
-  fd = open("/sys/class/gpio/unexport", 0_WRONLY);
+  fd = open("/sys/class/gpio/unexport", O_WRONLY);
   if (-1 == fd) {
     fprintf(stderr, "Failed to open unexport for writing.\n");
     return(-1);
@@ -70,7 +70,7 @@ GPIODirection(int pin, int dir)
   int fd;
 
   snprintf(path, DIRECTION_MAX, "/sys/class/gpio/gpio%d/direction", pin);
-  fd = open(path, 0_WRONLY);
+  fd = open(path, O_WRONLY);
   if (-1 == fd) {
     fprintf(stderr, "Failed to open gpio direction for writing.\n");
     return(-1);
@@ -93,7 +93,7 @@ GPIORead(int pin)
   int fd;
 
   snprintf(path, VALUE_MAX, "/sys/class/gpio/gpio%d/value", pin);
-  fd = open(path, 0_RDONLY);
+  fd = open(path, O_RDONLY);
   if (-1 == fd) {
     fprintf(stderr, "Failed to open gpio value for reading.\n");
     return(-1);
@@ -116,7 +116,7 @@ GPIOWrite(int pin, int value)
   int fd;
 
   snprintf(path, VALUE_MAX, "/sys/class/gpio/gpio%d/value", pin);
-  fd = open(path, 0_WRONLY);
+  fd = open(path, O_WRONLY);
   if (-1 == fd) {
     fprintf(stderr, "Failed to open gpio value for writing.\n");
     return(-1);
